@@ -1,13 +1,12 @@
 import './Home.css';
-import Navbar from './Navbar';
 import DefaultLayout from './layout/DefaultLayout';
 
-function Home() {
+function About() {
   return (
     <DefaultLayout>
-      <div className="Home" />
+        
     </DefaultLayout>
   );
 }
 
-export default Home;
+export default About;

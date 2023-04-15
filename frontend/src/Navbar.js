@@ -1,20 +1,21 @@
 import React from 'react';
 import './Navbar.css'
+import { Link } from 'react-router-dom';
 
 const NavbarItem = ({ children, href }) => (
   <li className="navbar-item">
-    <a className="navbar-link" href={href}>
+    <Link className="navbar-link" to={href}>
       {children}
-    </a>
+    </Link>
   </li>
 );
 
 const Navbar = () => (
   <nav className="navbar">
-    <img src={`${process.env.PUBLIC_URL}/kohub.png`} className="logo" />
+    <img src={`${process.env.PUBLIC_URL}/kohub.png`} alt="logo" className="logo" />
     <ul className="navbar-list">
       <NavbarItem href="/">HOME</NavbarItem>
-      <NavbarItem href="/">ABOUT</NavbarItem>
+      <NavbarItem href="/about">ABOUT</NavbarItem>
       <NavbarItem href="/">SEARCH</NavbarItem>
       <NavbarItem href="/">SERVICE</NavbarItem>
       <NavbarItem href="/">
