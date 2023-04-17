@@ -1,5 +1,4 @@
-import './Home.css';
-import DefaultLayout from './layout/DefaultLayout';
+import DefaultLayout from '../layout/DefaultLayout';
 
 function About() {
   return (

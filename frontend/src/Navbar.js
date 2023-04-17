@@ -15,7 +15,7 @@ const Navbar = () => (
     <img src={`${process.env.PUBLIC_URL}/kohub.png`} alt="logo" className="logo" />
     <ul className="navbar-list">
       <NavbarItem href="/">HOME</NavbarItem>
-      <NavbarItem href="/about">ABOUT</NavbarItem>
+      <NavbarItem href="/about">ABOUT US</NavbarItem>
       <NavbarItem href="/">SEARCH</NavbarItem>
       <NavbarItem href="/">SERVICE</NavbarItem>
       <NavbarItem href="/">

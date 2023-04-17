@@ -8,6 +8,7 @@
     justify-content:left;
     align-items: center;
     height: 60px;
+    white-space: nowrap;
   }
   
 .navbar-list {
@@ -19,7 +20,7 @@
 .navbar-item {
     margin-top: 5px;
     font-size: 25px;
-    margin-left: 20%;
+    padding-left: 15%;
 }
   
 .navbar-link {
