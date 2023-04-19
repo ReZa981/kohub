@@ -42,7 +42,7 @@ body{
   align-items: center;
 }
 
-button {
+.findspace {
   margin-top: 5%;
   margin-left: 5%;
   margin-right: 5%;
@@ -55,14 +55,36 @@ button {
   line-height: 200%;
 }
 
-button:hover {
+.findspace:hover {
   background-color: #DB6154;
   border:#DB6154;
 }
 
-button:active {
+.findspace:active {
   background-color: #983C32;
   border:#983C32;
+}
+
+.moreinfo {
+  margin-top: 5%;
+  margin-left: 7%;
+  background-color: transparent;
+  border:1.5px solid #FFFFFF;
+  color:white;
+  border-radius: 25px;
+  font-size: 15px;
+  width: 35%;
+  line-height: 200%;
+}
+
+.moreinfo:hover {
+  border: 1.5px solid #D9DDDC;
+  color:white;
+}
+
+.moreinfo:active {
+  border: 1.5px solid #D9DDDC;
+  color:#FCEBB6;
 }
 
 .duckfloat1{
