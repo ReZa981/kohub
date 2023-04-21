@@ -1,3 +1,56 @@
 body{
-    background-image: url('/public/aboutusbg.png');
+    background-image: url('/public/aboutus.png');
 }
+.aboutus{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    justify-content: flex-start;
+}
+
+.introduceteam{
+    font-weight: lighter;
+    margin-top: 2%;
+    float: left;
+}
+
+.meet{
+    margin-top: 10%;
+}
+
+/*Create card box for creating cards automatically*/
+.membercard{
+    margin-top: 4%;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(200px, 1fr));
+    gap: 30px;
+}
+
+/*Set card design*/
+.card{
+    color: white;
+    height: 50%;
+}
+
+.memberpic{
+    width: 60%;
+}
+/*Set nickname style*/
+.nickname{
+    font-weight:600;
+    font-size:large;
+}
+
+/*Set name style*/
+.name{
+    font-weight:300;
+    margin-bottom: 2%;
+}
+
+/*Set role of ui designer style*/
+.role{
+    font-weight:600;
+}
+
