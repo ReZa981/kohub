@@ -13,7 +13,7 @@ const NavbarItem = ({ children, href }) => (
 const Navbar = () => (
   <nav className="navbar">
     <img src={`${process.env.PUBLIC_URL}/kohub.png`} alt="logo" className="logo" />
-    <ul className="navbar-list">
+    <ul className="navbar-list" style={{ zIndex: 100 }}>
       <NavbarItem href="/">HOME</NavbarItem>
       <NavbarItem href="/about">ABOUT US</NavbarItem>
       <NavbarItem href="/">SEARCH</NavbarItem>

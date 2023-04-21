@@ -1,4 +1,5 @@
 import DefaultLayout from '../layout/DefaultLayout';
+import './aboutus.css'
 
 function About() {
   return (
