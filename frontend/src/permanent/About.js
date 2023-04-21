@@ -4,7 +4,7 @@ function About() {
   return (
     <DefaultLayout>
         <div>
-            Placeholder (Put about section here)
+          Placeholder (Put about section here)
         </div>
     </DefaultLayout>
   );
