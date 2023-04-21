@@ -16,12 +16,12 @@ const pool = mysql.createPool({
     database: process.env.MYSQL_DB
 })
 
-// Define the admin route
+// For testing admin route
 router.get('/admin', (req, res) => {
     res.send({ message: 'admin route!' })
 })
 
-// Define the login route
+// Admin login route
 router.post('/admin/login', async (req, res) => {
     const { username, password } = req.body
 
@@ -35,7 +35,7 @@ router.post('/admin/login', async (req, res) => {
         conn.release();
 
         if (rows.length === 0) {
-            return res.status(401).json({ message: 'Invalid username or password' });
+            return res.status(401).json({ message: 'Invalid username or password or user is not admin' });
         }
 
         const user = rows[0];
@@ -54,7 +54,7 @@ router.post('/admin/login', async (req, res) => {
     }
 });
 
-// Define the create admin account route
+// Create an admin account
 router.post('/admin/create', async (req, res) => {
     const { username, password, fullname, email } = req.body
 
@@ -76,5 +76,38 @@ router.post('/admin/create', async (req, res) => {
     }
 });
 
+// List all users that has user role
+router.get('/admin/users', async (req, res) => {
+    try {
+        const conn = await pool.getConnection();
+        const [rows, fields] = await conn.execute('SELECT userId, userName, fullName, email FROM users WHERE role = "user"')
+        conn.release();
+        return res.json({ success: true, users: rows })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false })
+    }
+});
 
+// Updates user information
+router.put('/admin/users/:userId', async (req, res) => {
+    const { userId } = req.params
+    const { username, fullname, email } = req.body
+
+    try {
+        const conn = await pool.getConnection();
+        const query = await conn.execute(`UPDATE users SET userName = ? fullName = ?, email = ? WHERE userId = ?`)
+    
+        const [result] = await conn.query(query, [username, fullname, email, userId])
+        conn.release()
+        
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'User not found' })
+        }
+        console.warn(`👤 AUTH: User account [${username}] has been updated`)
+        return res.json({ success: true })
+    } catch (error) {
+        console.error(error)
+    }
+})
 module.exports = router
