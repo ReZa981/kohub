@@ -17,12 +17,12 @@ const pool = mysql.createPool({
 })
 
 // Define the admin route
-router.get('/admin', (req, res) => {
-    res.send({ message: 'admin route!' })
+router.get('/user', (req, res) => {
+    res.send({ message: 'user route!' })
 })
 
 // Define the login route
-router.post('/admin/login', async (req, res) => {
+router.post('/user/login', async (req, res) => {
     const { username, password } = req.body
 
     if (!username || !password) {
@@ -31,7 +31,7 @@ router.post('/admin/login', async (req, res) => {
 
     try {
         const conn = await pool.getConnection();
-        const [rows, fields] = await conn.execute('SELECT * FROM users WHERE userName = ? AND role = "admin"', [username])
+        const [rows, fields] = await conn.execute('SELECT * FROM users WHERE userName = ? AND role = "user"', [username])
         conn.release();
 
         if (rows.length === 0) {
@@ -55,7 +55,7 @@ router.post('/admin/login', async (req, res) => {
 });
 
 // Define the create admin account route
-router.post('/admin/create', async (req, res) => {
+router.post('/user/create', async (req, res) => {
     const { username, password, fullname, email } = req.body
 
     if (!username || !password || !fullname || !email) {
@@ -65,7 +65,7 @@ router.post('/admin/create', async (req, res) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const conn = await pool.getConnection();
-        const [result] = await conn.execute('INSERT INTO `users` (userName, password, fullName, email, role) VALUES (?, ?, ?, ?, "admin")', [username, hashedPassword, fullname, email])
+        const [result] = await conn.execute('INSERT INTO `users` (userName, password, fullName, email) VALUES (?, ?, ?, ?)', [username, hashedPassword, fullname, email])
         conn.release();
         const adminId = result.insertId;
         console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)
