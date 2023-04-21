@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const router = express.Router()
 const bodyParser = require('body-parser')
@@ -8,10 +10,10 @@ const mysql = require('mysql2/promise')
 router.use(bodyParser.json())
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'Fluke1567',
-    database: 'webpro'
+    host: process.env.MYSQL_SERVER_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DB
 })
 
 // Define the admin route
