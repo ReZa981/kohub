@@ -30,26 +30,27 @@ router.post('/admin/login', async (req, res) => {
     }
 
     try {
-        const conn = await pool.getConnection()
-        const [rows, fields] = await conn.execute('SELECT * FROM ad_info WHERE ad_username = ?', [username])
-        conn.release()
+        const conn = await pool.getConnection();
+        const [rows, fields] = await conn.execute('SELECT * FROM users WHERE userName = ?', [username])
+        conn.release();
 
         if (rows.length === 0) {
-            return res.status(401).json({ message: 'Invalid username or password' })
+            return res.status(401).json({ message: 'Invalid username or password' });
         }
 
-        const user = rows[0]
-    
-        if (password === user.Ad_Password) {
-            const token = jwt.sign({ username: user.Ad_Username }, ')H@McQfTjWnZr4u7')
-            console.warn(`👤 AUTH: [${user.Ad_Username}] has logged in (${user.Ad_Role})`)
-            return res.json({ token })
+        const user = rows[0];
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (isMatch) {
+            const token = jwt.sign({ username: user.ad_username }, 'H@McQfTjWnZr4u7');
+            console.warn(`👤 AUTH: [${user.userName}] has logged in (${user.role})`)
+            return res.json({ token });
         } else {
-            return res.status(401).json({ message: 'Invalid username or password' })
+            return res.status(401).json({ message: 'Invalid username or password' });
         }
     } catch (error) {
-        console.error(error)
-        return res.status(500).json({ message: 'An error occurred' })
+        console.error(error);
+        return res.status(500).json({ message: 'An error occurred' });
     }
 });
 
@@ -58,21 +59,22 @@ router.post('/admin/create', async (req, res) => {
     const { username, password, fullname, email } = req.body
 
     if (!username || !password || !fullname || !email) {
-        return res.status(400).json({ success: false, message: 'Arguments not complete'})
+        return res.status(400).json({ success: false, message: 'Arguments not complete' })
     }
 
     try {
-        const conn = await pool.getConnection()
-        const [result] = await conn.execute('INSERT INTO ad_info (ad_username, ad_password, ad_fullname, ad_email, ad_role) VALUES (?, ?, ?, ?, "admin")', [username, password, fullname, email])
-        conn.release()
-        const adminId = result.insertId
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const conn = await pool.getConnection();
+        const [result] = await conn.execute('INSERT INTO `users` (userName, password, fullName, email, role) VALUES (?, ?, ?, ?, "admin")', [username, hashedPassword, fullname, email])
+        conn.release();
+        const adminId = result.insertId;
         console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)
         return res.json({ success: true, adminId })
     } catch (error) {
-        console.error(error)
+        console.error(error);
         return res.status(500).json({ success: false })
     }
-})
+});
 
 
 module.exports = router

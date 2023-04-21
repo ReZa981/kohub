@@ -1,47 +1,36 @@
-DROP DATABASE IF EXISTS Webpro;
+DROP DATABASE IF EXISTS Kohub;
 
-CREATE DATABASE IF NOT EXISTS `Webpro` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE DATABASE IF NOT EXISTS `Kohub` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
-USE `Webpro`;
+USE `Kohub`;
 
-CREATE TABLE IF NOT EXISTS Ad_Info(
-    Ad_id int NOT NULL AUTO_INCREMENT,
-    Ad_Username Varchar(100) NOT NULL,
-    Ad_Fullname Varchar(100) NOT NULL,
-    Ad_Email Varchar(100) NOT NULL,
-    Ad_Password Varchar(100) NOT NULL,
-    Ad_Role Varchar(45),
-    PRIMARY KEY (Ad_id)
+CREATE TABLE IF NOT EXISTS `users` (
+    userId int NOT NULL AUTO_INCREMENT,
+    userName Varchar(100) NOT NULL,
+    fullName Varchar(100) NOT NULL,
+    email Varchar(100) NOT NULL,
+    password Varchar(100) NOT NULL,
+    role Varchar(45) DEFAULT 'user',
+    PRIMARY KEY (userId)
 );
 
-CREATE TABLE IF NOT EXISTS Co_info(
-    Co_id int NOT NULL AUTO_INCREMENT,
-    Co_Name VARCHAR(100) NOT NULL,
-    Co_Desc VARCHAR(100) NOT NULL,
-    Co_Contact VARCHAR(100) NOT NULL,
-    Co_Rating int NOT NULL,
-    Co_Seat int NOT NULL,
-    Co_Range VARCHAR(100) NOT NULL,
-    Co_Locate VARCHAR(100) NOT NULL,
-    Co_Pic BLOB NOT NULL,
-    PRIMARY KEY (Co_id)
-);
-
-CREATE TABLE IF NOT EXISTS Cus_Info(
-    Cus_id int NOT NULL AUTO_INCREMENT,
-    Cus_Username VARCHAR(100) NOT NULL,
-    Cus_Password VARCHAR(100) NOT NULL,
-    Cus_Fullname VARCHAR(100) NOT NULL,
-    Cus_Bdate date NOT NULL,
-    Cus_Email VARCHAR(100) NOT NULL,
-    Cus_pic blob NOT NULL,
-    PRIMARY KEY (Cus_id, Cus_Username)
+CREATE TABLE IF NOT EXISTS `coworking` (
+    placeId int NOT NULL AUTO_INCREMENT,
+    placeName VARCHAR(100) NOT NULL,
+    descr VARCHAR(100) NOT NULL,
+    contact VARCHAR(100) NOT NULL,
+    rating int NOT NULL,
+    seat int NOT NULL,
+    priceRange VARCHAR(100) NOT NULL,
+    locate VARCHAR(100) NOT NULL,
+    image VARCHAR(199) NOT NULL,
+    PRIMARY KEY (placeId)
 );
 
 CREATE TABLE IF NOT EXISTS Log_info (
     Log_id int NOT NULL AUTO_INCREMENT,
-    Ad_id int AUTO_INCREMENT,
+    userId int,
     Log_time datetime,
-    PRIMARY KEY (Log_ID),
-    FOREIGN KEY (Ad_id) REFERENCES Ad_Info(Ad_id)
+    PRIMARY KEY (Log_id),
+    FOREIGN KEY (userId) REFERENCES users(userId)
 );
