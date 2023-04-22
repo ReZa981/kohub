@@ -1,5 +1,5 @@
 import React from 'react';
-import './Navbar.css'
+import './index.css';
 import { Link } from 'react-router-dom';
 
 const NavbarItem = ({ children, href }) => (
@@ -18,7 +18,7 @@ const Navbar = () => (
       <NavbarItem href="/about">ABOUT US</NavbarItem>
       <NavbarItem href="/">SEARCH</NavbarItem>
       <NavbarItem href="/">SERVICE</NavbarItem>
-      <NavbarItem href="/">
+      <NavbarItem href="/login">
         <button className='LoginButton'>LOG IN</button>
       </NavbarItem>
     </ul>

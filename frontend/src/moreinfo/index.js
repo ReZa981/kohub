@@ -1,5 +1,5 @@
 import DefaultLayout from '../layout/DefaultLayout';
-import './moreinfo.css';
+import './index.css';
 
 function Moreinfo() {
   return (
