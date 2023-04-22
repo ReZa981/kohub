@@ -5,6 +5,7 @@
 }
 
 body {
+  overflow-y:hidden;
   margin: 0;
   background-image: url('/public/originalbg.png');
 }

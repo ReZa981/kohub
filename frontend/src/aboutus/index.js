@@ -5,10 +5,12 @@ function About() {
   return (
     <DefaultLayout>
         <div className="aboutus">
+        <img src={`${process.env.PUBLIC_URL}/wave.png`} className="wave" />
           <div className="introduceteam">
             <h1 className="whoarewe">WHO ARE WE ?</h1>
             <p className="teamdesc">We are developer team of Yellow Duck production.</p>
           </div>
+          <h2 className="meetteam">MEET OUR TEAM</h2>
           <div className="membercard">
             <div class="card" >
                 <img src={`${process.env.PUBLIC_URL}/chertam.png`} className="memberpic" />
