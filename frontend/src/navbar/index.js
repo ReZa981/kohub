@@ -19,7 +19,7 @@ const Navbar = () => (
     <ul className="navbar-list" style={{ zIndex: 100 }}>
       <NavbarItem href="/">HOME</NavbarItem>
       <NavbarItem href="/about">ABOUT US</NavbarItem>
-      <NavbarItem href="/">SEARCH</NavbarItem>
+      <NavbarItem href="/search">SEARCH</NavbarItem>
       <NavbarItem href="/">SERVICE</NavbarItem>
       <NavbarItem href="/login">
         <button className="LoginButton">LOG IN</button>
