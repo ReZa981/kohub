@@ -1,14 +1,17 @@
 import React from 'react';
 import './index.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-const NavbarItem = ({ children, href }) => (
-  <li className="navbar-item">
-    <Link className="navbar-link" to={href}>
-      {children}
-    </Link>
-  </li>
-);
+const NavbarItem = ({ children, href }) => {
+  const isActive = useLocation().pathname === href;
+  return (
+    <li className="navbar-item">
+      <Link className={`navbar-link ${isActive ? 'currentpage' : ''}`} to={href}>
+        {children}
+      </Link>
+    </li>
+  );
+};
 
 const Navbar = () => (
   <nav className="navbar">
@@ -19,7 +22,7 @@ const Navbar = () => (
       <NavbarItem href="/">SEARCH</NavbarItem>
       <NavbarItem href="/">SERVICE</NavbarItem>
       <NavbarItem href="/login">
-        <button className='LoginButton'>LOG IN</button>
+        <button className="LoginButton">LOG IN</button>
       </NavbarItem>
     </ul>
   </nav>

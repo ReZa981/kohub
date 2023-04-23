@@ -18,9 +18,17 @@
 .introduceteam{
     position: absolute;
     left: 5%;
-    margin-top: 5%;
+    margin-top: 7%;
     transform: translateY(-50%);
-    
+}
+
+.whoarewe {
+    text-align: left;
+}
+
+.teamdesc {
+    width: 40%;
+    text-align: left;
 }
 
 /*Create card box for creating cards automatically*/

@@ -58,4 +58,12 @@
     background-color: #983C32;
     border:#983C32;
 }
-  
+
+.currentpage {
+    color: #983C32;
+}
+
+.currentpage button{
+    color: #983C32;
+    background-color: #F0A830;
+}
