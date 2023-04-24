@@ -34,15 +34,17 @@ const Navbar = () => (
         </NavbarItem>
       ) : (
         <NavbarItem>
-          <button
-            className="LogoutButton"
+          <img src={`${process.env.PUBLIC_URL}/chat.png`} alt="profile" className="profilepic" />
+          <img src={`${process.env.PUBLIC_URL}/notification.png`} alt="profile" className="profilepic" />
+          <img
+            src={`${process.env.PUBLIC_URL}/profile.png`}
+            alt="profile"
+            className="profilepic"
             onClick={() => {
               localStorage.removeItem("token");
               window.location.href = "/";
             }}
-          >
-            LOG OUT
-          </button>
+          />
         </NavbarItem>
       )}
     </ul>

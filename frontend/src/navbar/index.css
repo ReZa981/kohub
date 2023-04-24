@@ -1,19 +1,21 @@
 .logo {
-    margin-left: 0.5%;
-    margin-right:12%;
+    margin-left: -20%;
 }
 .navbar {
     z-index: 1;
     margin-top: 15px;
     display: flex;
-    justify-content:left;
     align-items: center;
+    justify-content: space-around;
     height: 60px;
     white-space: nowrap;
   }
   
 .navbar-list {
+    margin-left: -20%;
     display: flex;
+    align-items: center;
+    justify-content: space-around;
     list-style-type: none;
     font-weight: semibold;
 }
@@ -59,26 +61,9 @@
     border:#983C32;
 }
 
-.LogoutButton {
-    margin-top: -15px;
-    margin-left: 10px;
-    background-color: #D93753;
-    border:#D93753;
-    color:white;
-    border-radius: 25px;
-    font-size: 20px;
-    height: 120%;
-    width: 200%;
-}
-
-.LogoutButton:hover {
-    background-color: #DB6154;
-    border:#DB6154;
-}
-
-.LogoutButton:active {
-    background-color: #983C32;
-    border:#983C32;
+.profilepic {
+    margin-left: 5%;
+    width: 40px;
 }
 
 .currentpage {
