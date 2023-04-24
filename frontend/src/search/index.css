@@ -113,3 +113,7 @@
 .resultinfo button:active {
   background-color: #B57C1F;
 }
+
+.resultrating img{
+  width:30px;
+}
