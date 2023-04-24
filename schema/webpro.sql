@@ -7,7 +7,6 @@ USE `Kohub`;
 CREATE TABLE IF NOT EXISTS `users` (
     userId int NOT NULL AUTO_INCREMENT,
     userName Varchar(100) NOT NULL,
-    fullName Varchar(100) NOT NULL,
     email Varchar(100) NOT NULL,
     password Varchar(100) NOT NULL,
     role Varchar(45) DEFAULT 'user',
