@@ -82,7 +82,7 @@ router.post('/admin/create', async (req, res) => {
 router.get('/admin/users', async (req, res) => {
     try {
         const conn = await pool.getConnection();
-        const [rows, fields] = await conn.execute('SELECT userId, userName, fullName, email FROM users WHERE role = "user"')
+        const [rows, fields] = await conn.execute('SELECT userId, userName, email FROM users WHERE role = "user"')
         conn.release();
         return res.json({ success: true, users: rows })
     } catch (error) {
