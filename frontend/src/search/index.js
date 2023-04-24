@@ -23,7 +23,14 @@ function Search() {
           <button type="button"> Search </button>
         </div>
         <div className="resulttable">
-            {ResultComponent(1)}
+            {ResultComponent()}
+            {ResultComponent()}
+            {ResultComponent()}
+            {ResultComponent()}
+            {ResultComponent()}
+            {ResultComponent()}
+            {ResultComponent()}
+            {ResultComponent()}
         </div>
       </div>
     </DefaultLayout>

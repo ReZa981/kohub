@@ -17,7 +17,7 @@ function Home() {
                 with collects good deals and seat reservations 
                 in co-working spaces throughout Thailand.</p>
             <div className="interaction">
-              <Link>
+              <Link to="/search">
                 <button className="findspace">FIND YOUR SPACE</button>
               </Link>
               <Link to="/moreinfo">

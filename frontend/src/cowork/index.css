@@ -39,6 +39,7 @@
     color:#f3c16c;
     letter-spacing: 2px;
     -webkit-text-stroke: 0.05px #F0A830;
+    text-transform: uppercase;
     height: 10%;
 }
 

@@ -5,6 +5,7 @@ import Moreinfo from "./moreinfo";
 import Login from "./login";
 import Search from "./search";
 import Cowork from "./cowork";
+import Admin from "./admin";
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/coworkingspace" element={<Cowork />} />
+                <Route path="/admin" element={<Admin />} />
             </Routes>
         </>
     )
