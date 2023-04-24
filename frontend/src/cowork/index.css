@@ -36,8 +36,9 @@
 }
 
 .coworkname {
-    color:#F0A830;
-    -webkit-text-stroke: 0.05px black;
+    color:#f3c16c;
+    letter-spacing: 2px;
+    -webkit-text-stroke: 0.05px #F0A830;
     height: 10%;
 }
 

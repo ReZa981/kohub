@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { Link, useLocation } from "react-router-dom";
 
@@ -16,8 +16,30 @@ const NavbarItem = ({ children, href }) => {
   );
 };
 
-const Navbar = () => (
-  <nav className="navbar">
+const ProfileModal = ({ onClose, onNavigate }) => (
+  <div className="profile-modal">
+    <p onClick={() => onNavigate("/admin")}>
+      <img src={`${process.env.PUBLIC_URL}/edit.png`} alt="coice" className="mochoice" />
+      ADMIN</p>
+    <p onClick={() => {
+      localStorage.removeItem("token");
+      window.location.href = "/";
+    }}>
+      <img src={`${process.env.PUBLIC_URL}/logout.png`} alt="coice" className="mochoice" />
+      LOG OUT</p>
+  </div>
+);
+
+
+const Navbar = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleNavigate = (path) => {
+    setShowModal(false);
+    window.location.href = path;
+  };
+  return (
+    <nav className="navbar">
     <img
       src={`${process.env.PUBLIC_URL}/kohub.png`}
       alt="logo"
@@ -40,15 +62,19 @@ const Navbar = () => (
             src={`${process.env.PUBLIC_URL}/profile.png`}
             alt="profile"
             className="profilepic"
-            onClick={() => {
-              localStorage.removeItem("token");
-              window.location.href = "/";
-            }}
+            onClick={() => setShowModal(!showModal)}
           />
+          {showModal && (
+            <ProfileModal
+              onClose={() => setShowModal(false)}
+              onNavigate={handleNavigate}
+            />
+          )}
         </NavbarItem>
       )}
     </ul>
   </nav>
-);
+  );
+}
 
 export default Navbar;

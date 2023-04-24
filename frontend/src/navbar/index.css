@@ -74,3 +74,33 @@
     color: #983C32;
     background-color: #F0A830;
 }
+
+.profile-modal{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 120px;
+    background-color: #F0EDE5;
+    border: 1px solid #F0EDE5;
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 200;
+}
+
+.profile-modal p {
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    font-size: 15px;
+    color: black;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  .profile-modal img {
+    margin-right: 5%;
+    width: 20px;
+  }
