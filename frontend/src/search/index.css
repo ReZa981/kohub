@@ -20,7 +20,8 @@
   border: 2px solid #ccc;
   border-radius: 30px;
   padding: 0.5rem;
-  background-color: #fff;
+  background-color: white;
+  border-color: white;
   width: 800px;
 }
   
@@ -60,9 +61,9 @@
 }
 
 .resulttable{
-  display: grid;
-  grid-template-rows: repeat(auto-fit,minmax(50px, 1fr));
-  background-color: grey;
+  overflow-y:scroll;
+  display: flex;
+  flex-direction: column;
   border-radius:30px;
   margin-top: -130%;
   margin-left: -70%;
@@ -77,8 +78,13 @@
   display: flex;
   align-items: center;
   background-color: white;
-  justify-content: space-between;
+  justify-content: space-around;
   border-radius: 30px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
   margin-top: 2%;
   width: 100%;
   height: 70px;
@@ -90,10 +96,6 @@
   text-align: center;
 }
 
-.resultinfo p.number{
-  flex-basis: 5%; 
-}
-
 .resultinfo button{
   font-size: large;
   color: white;
@@ -102,5 +104,12 @@
   border-radius: 20px;
   width: 120px;
   height: 40px;
-  margin-right: 5%;
+}
+
+.resultinfo button:hover{
+  background-color: #E5AD4F;
+}
+
+.resultinfo button:active {
+  background-color: #B57C1F;
 }
