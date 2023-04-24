@@ -6,6 +6,7 @@ import Login from "./login";
 import Search from "./search";
 import Cowork from "./cowork";
 import Admin from "./admin";
+import Signup from "./signup";
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                 <Route path="/search" element={<Search />} />
                 <Route path="/coworkingspace" element={<Cowork />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/signup" element={<Signup />} />
             </Routes>
         </>
     )

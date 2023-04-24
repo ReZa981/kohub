@@ -66,11 +66,10 @@
 
 /*Set the label style*/
 .loginbox label {
-    margin-left: -85%;
     font-size: large;
     font-weight: 300;
     line-height: 40px;
-    align-self: left;
+    text-align: left;
 }
 
 /*Set the input box style*/
