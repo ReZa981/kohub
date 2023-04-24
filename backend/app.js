@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 const express = require('express'); 
 const app = express(); 
 const port = process.env.PORT || 4000; 
@@ -12,12 +13,16 @@ console.log(`🔐 JWT_SECRET_KEY: ${process.env.JWT_SECRET_KEY}`)
 console.log(`🗄 MYSQL_SERVER_HOST: ${process.env.MYSQL_SERVER_HOST}`)
 console.log(`🗄 MYSQL_SERVER_PORT: ${process.env.MYSQL_SERVER_PORT}`)
 console.log(`🗄 MYSQL_USER: ${process.env.MYSQL_USER}`)
-app.listen(port, () => console.log(`🚀 Server ready at 0.0.0.0:${port}`)); 
+
 
 app.get('/', (req, res) => { 
     res.send({ message: 'Hello World!' }); 
 })
 
+app.use(cors())
+app.use(express.json())
 app.use(userRouter)
 app.use(adminRouter);
 app.use(coworkRouter)
+
+app.listen(4000, () => console.log(`🚀 Server ready at 0.0.0.0:${port}`)); 

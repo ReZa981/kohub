@@ -85,6 +85,13 @@
     height: 50px;
 }
 
+.error {
+    text-align: left;
+    color: red;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
 /*Set the sign-in button box style*/
 #btnLogin{
     color: white;

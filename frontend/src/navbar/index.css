@@ -59,6 +59,28 @@
     border:#983C32;
 }
 
+.LogoutButton {
+    margin-top: -15px;
+    margin-left: 10px;
+    background-color: #D93753;
+    border:#D93753;
+    color:white;
+    border-radius: 25px;
+    font-size: 20px;
+    height: 120%;
+    width: 200%;
+}
+
+.LogoutButton:hover {
+    background-color: #DB6154;
+    border:#DB6154;
+}
+
+.LogoutButton:active {
+    background-color: #983C32;
+    border:#983C32;
+}
+
 .currentpage {
     color: #983C32;
 }

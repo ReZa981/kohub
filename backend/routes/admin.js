@@ -24,8 +24,10 @@ router.get('/admin', (req, res) => {
 // Admin login route
 router.post('/admin/login', async (req, res) => {
     const { username, password } = req.body
+    console.log(req.body)
 
     if (!username || !password) {
+        console.log(`👤 AUTH: no username || password noob`)
         return res.status(400).json({ message: 'Username and password are required' })
     }
 
