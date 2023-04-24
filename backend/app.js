@@ -25,4 +25,4 @@ app.use(userRouter)
 app.use(adminRouter);
 app.use(coworkRouter)
 
-app.listen(4000, () => console.log(`🚀 Server ready at 0.0.0.0:${port}`)); 
+app.listen(port, () => console.log(`🚀 Server ready at 0.0.0.0:${port}`)); 
