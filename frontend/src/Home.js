@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import './Home.css';
+import Navbar from './Navbar';
+import DefaultLayout from './layout/DefaultLayout';
 
-function App() {
+function Home() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DefaultLayout>
+      <div className="home">
+        <div className="home-display">
+          <div className="homeinfo">
+            <p className="kohubname">KOHUB</p>
+          </div>
+          {/* <img src={`${process.env.PUBLIC_URL}/kohub.png`} className="duckfloat" /> */}
+        </div>
+      </div>
+    </DefaultLayout>
   );
 }
 
-export default App;
+export default Home;
