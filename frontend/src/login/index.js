@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { withRouter } from 'react-router-dom';
 import axios from 'axios'
 import DefaultLayout from '../layout/DefaultLayout'
@@ -16,21 +16,29 @@ function Login() {
   const [password, setPassword] = useState('')
   const [userRole, setUserRole] = useState(role.User)
   const [error, setError] = useState(null)
-    
-  const apiLink = `http://localhost:4000/${userRole.User ? 'user' : 'admin'}/login`;
+  const [apiLink, setApiLink] = useState(`http://localhost:4000/user/login`);
+
+  useEffect(() => {
+    setApiLink(`http://localhost:4000/${userRole === role.User ? 'user' : 'admin'}/login`);
+  }, [userRole]);
 
 
   const handleLogin = async () => {
-    console.log('kub')
-    console.log(username, password)
     try {
-      const response = await axios.post(apiLink, { username, password })
-      console.log(response.data)
-      if (response.data.token) {
-        const token = response.data.token
+      const response = await fetch(apiLink,{ 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password })
+      })
+      const data = await response.json();
+      if (data.token) {
+        const token = data.token
         localStorage.setItem('token', token);
-        console.log('local saved token:', localStorage.getItem('token'))
         window.location.href = '/'
+      } else {
+        setError(data.message)
       }
 
     } catch (err) {
