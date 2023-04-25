@@ -85,7 +85,8 @@ function Admin() {
             <div className="modal-header">
               <h2>Create co-working</h2>
             </div>
-            <div className="edituser-content">
+            <div className="createscroll">
+            <div className="editservice-content">
               <label>Place Name</label>
               <input className="input" type="text" />
               <label>Description</label>
@@ -116,12 +117,12 @@ function Admin() {
               <input className="input" type="text" />
               <label>Image</label>
               <input className="input" type="text" />
-              <br />
+            </div>
+            </div>
               <div className="modal-button">
                 <button >CREATE CO-WORKING</button>
               </div>
             </div>
-          </div>
         </ServiceModal>
       )
       }

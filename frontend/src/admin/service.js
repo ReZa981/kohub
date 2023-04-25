@@ -115,11 +115,11 @@ function Service() {
 
   return (
     <div className='accountmanagement'>
-      <div className="tablehead">
-        <p classname="coname">co-working space</p>
-        <p classname="ratinglist">rating</p>
-        <p classname="edit">modify</p>
-        <p classname="delete">delete</p>
+      <div className="tablehead2">
+        <p className="coname">co-working space</p>
+        <p className="ratinglist">rating</p>
+        <p className="coedit">modify</p>
+        <p className="codelete">delete</p>
       </div>
       <div className='allaccount'>
         {coworks.map((cowork) => (

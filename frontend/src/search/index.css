@@ -76,6 +76,7 @@
 .resultinfo{
   font-size: medium;
   display: flex;
+  justify-content: left;
   align-items: center;
   background-color: white;
   justify-content: space-around;
@@ -91,9 +92,10 @@
 }
 
 .resultinfo p{
+  width: 15%;
   margin-left: 4%;
   margin-right: 2%;
-  text-align: center;
+  text-align: left;
 }
 
 .resultinfo button{
