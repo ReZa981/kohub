@@ -46,20 +46,20 @@ export const AccountList = (props) => {
       </button>
       {modal && (
         <Modal onClose={handleClose}>
-          <div className="modal-header">
+          <div className="modal-content">
+            <div className="modal-header">
             <h2>{selectedOperation} Account</h2>
           </div>
-          <div className="modal-content">
             <div className="edituser-content">
               <label>Username</label>
-              <input className="input" type="text" placeholder="{username}" />
+              <input className="input" type="text" />
               <label>E-mail</label>
-              <input className="input" type="text" placeholder="userrole" />
+              <input className="input" type="text" />
               <label>Role</label>
-              <input className="input" type="text" placeholder="userrole" />
+              <input className="input" type="text" />
               <br /> 
               <div className="modal-button">
-                <button></button>
+                <button>SAVE CHANGE</button>
               </div>
             </div>
           </div>
