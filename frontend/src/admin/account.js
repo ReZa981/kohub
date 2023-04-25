@@ -112,7 +112,7 @@ export const AccountList = (props) => {
               <label>Role</label>
               <input value={urole} onChange={(e) => setUrole(e.target.value)} className="input" type="text" />
               <br />
-              <div className="modal-button">
+              <div className="edit-modal-button">
                 <button onClick={handleUpdate}>SAVE CHANGE</button>
               </div>
             </div>

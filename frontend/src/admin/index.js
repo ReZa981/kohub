@@ -71,7 +71,7 @@ function Admin() {
               <label>Email</label>
               <input className="input" type="text" />
               <br />
-              <div className="modal-button">
+              <div className="edit-modal-button">
                 <button >CREATE ACCOUNT</button>
               </div>
             </div>

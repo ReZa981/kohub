@@ -123,4 +123,22 @@ body.active-modal {
   z-index: 201;
   padding: 5px 7px;
 }
+.edit-modal-button button{
+  margin-top: 5%;
+    margin-left: -20%;
+    background-color: #D93753;
+    border:#D93753;
+    color:white;
+    padding: 7px 13px;
+    border-radius: 25px;
+    font-size: 18px;
+}
+.edit-modal-button button:hover {
+  background-color: #DB6154;
+  border:#DB6154;
+}
 
+.edit-modal-button button:active {
+  background-color: #983C32;
+  border:#983C32;
+}

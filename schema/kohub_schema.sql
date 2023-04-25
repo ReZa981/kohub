@@ -37,7 +37,7 @@ INSERT INTO `users` (`userName`, `email`, `password`, `role`)
 VALUES 
 ('PorameeA', 'PorameeA@example.com' ,'password007', 'admin'),
 ('PawitaP', 'PawitaP@example.com','password060','admin'),
-('KanyanatS', 'KanyanatS@example.com','password083','admin'),
+('KanyanutS', 'KanyanutS@example.com','password083','admin'),
 ('ChanayachaS', 'ChanayachaS@example.com', 'password098', 'admin'),
 ('PattanunW', 'PattanunW@example.com', 'password148', 'admin'),
 ('JidapaK', 'JidapaK@example.com', 'passwordAJ', 'admin'),

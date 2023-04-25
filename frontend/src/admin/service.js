@@ -84,7 +84,7 @@ export const ServiceList = (props) => {
               <label>Seat</label>
               <input className="input" type="text" value={pSeat} onChange={(e) => setPSeat(e.target.value)} />
               <br />
-              <div className="modal-button">
+              <div className="edit-modal-button">
                 <button onClick={handleUpdate}>SAVE CHANGE</button>
               </div>
             </div>
