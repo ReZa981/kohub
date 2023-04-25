@@ -15,7 +15,7 @@ function Search() {
     let url = "http://localhost:4000/cowork/search?";
     switch (criteria) {
       case "all":
-        url += `placeName=${query}&descr=${query}&locate=`;
+        url += `placeName=${query}&rating=${query}&locate=${query}`;
         break;
       case "name":
         url += `placeName=${query}`;

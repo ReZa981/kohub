@@ -76,13 +76,25 @@ router.get("/cowork/get/:placeId", async (req, res) => {
 router.get('/cowork/search', async (req, res) => {
     try {
         const params = req.query
+
         const connection = await pool.getConnection()
-        const query = `
-        SELECT * FROM coworking
+        let query = 'SELECT * FROM coworking WHERE '
+        if (params.placeName) {
+            query += `placeName LIKE '%${params.placeName}%'`
+        } else if (params.locate) {
+            query += `locate LIKE '%${params.locate}%'`
+        } else if (params.rating) {
+            query += `rating BETWEEN ${params.rating} AND ${params.rating}`
+        } else {
+            query += `
         WHERE placeName LIKE '%${params.placeName || ''}%'
-        AND locate LIKE '%${params.location || ''}%'
+        AND locate LIKE '%${params.locate || ''}%'
         AND rating BETWEEN ${params.rating || 0} AND ${params.rating || 5}
-    `
+            `
+        }
+
+
+
         const [rows] = await connection.query(query)
         connection.release()
         res.json({ success: true, list: rows })
