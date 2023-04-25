@@ -16,19 +16,37 @@ const NavbarItem = ({ children, href }) => {
   );
 };
 
-const ProfileModal = ({ onClose, onNavigate }) => (
-  <div className="profile-modal">
-    <p onClick={() => onNavigate("/admin")}>
-      <img src={`${process.env.PUBLIC_URL}/edit.png`} alt="coice" className="mochoice" />
-      ADMIN</p>
-    <p onClick={() => {
-      localStorage.removeItem("token");
-      window.location.href = "/";
-    }}>
-      <img src={`${process.env.PUBLIC_URL}/logout.png`} alt="coice" className="mochoice" />
-      LOG OUT</p>
-  </div>
-);
+const ProfileModal = ({ onClose, onNavigate }) => {
+  const isAdmin = localStorage.getItem("role") === 'admin' ? true : false;
+  return (
+    <>
+      {isAdmin ? (
+        <div className="profile-modal">
+          <p onClick={() => onNavigate("/admin")}>
+            <img src={`${process.env.PUBLIC_URL}/edit.png`} alt="coice" className="mochoice" />
+            ADMIN</p>
+          <p onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/";
+          }}>
+            <img src={`${process.env.PUBLIC_URL}/logout.png`} alt="coice" className="mochoice" />
+            LOG OUT</p>
+        </div>
+      ) : 
+        (
+          <div className="profile-modal">
+            <p onClick={() => {
+              localStorage.removeItem("token");
+              window.location.href = "/";
+            }}>
+              <img src={`${process.env.PUBLIC_URL}/logout.png`} alt="coice" className="mochoice" />
+              LOG OUT</p>
+          </div>
+      )}
+    </>
+  );
+}
+
 
 
 const Navbar = () => {

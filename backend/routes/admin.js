@@ -46,7 +46,7 @@ router.post('/admin/login', async (req, res) => {
         if (password === user.password) {
             const token = jwt.sign({ username: user.ad_username }, process.env.JWT_SECRET_KEY);
             console.warn(`👤 AUTH: [${user.userName}] has logged in (${user.role})`)
-            return res.json({ token });
+            return res.json({ token, role: user.role });
         } else {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
@@ -116,7 +116,7 @@ router.post('/admin/users/:userId', async (req, res) => {
         const conn = await pool.getConnection();
         const [result] = await conn.query(`UPDATE users SET userName = ?, role = ?, email = ? WHERE userId = ?`, [username, role, email, userId])
         conn.release()
-        
+
         if (result.affectedRows === 0) {
             return res.status(404).json({ success: false, message: 'User not found' })
         }

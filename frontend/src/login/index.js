@@ -36,6 +36,7 @@ function Login() {
       if (data.token) {
         const token = data.token
         localStorage.setItem('token', token);
+        (data.role === 'admin') ? localStorage.setItem('role', 'admin'): localStorage.setItem('role', 'user');
         window.location.href = '/'
       } else {
         setError(data.message)

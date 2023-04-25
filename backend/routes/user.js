@@ -44,7 +44,7 @@ router.post('/user/login', async (req, res) => {
         if (password === user.password) {
             const token = jwt.sign({ username: user.ad_username }, process.env.JWT_SECRET_KEY);
             console.warn(`👤 AUTH: [${user.userName}] has logged in (${user.role})`)
-            return res.json({ token });
+            return res.json({ token, role: user.role });
         } else {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
@@ -69,7 +69,7 @@ router.post('/user/create', async (req, res) => {
         const [result] = await conn.execute('INSERT INTO `users` (userName, fullName, password, email, phoneNum, role) VALUES (?, ?, ?, ?, "00000000" , "user")', [username, fullname, password, email])
         conn.release();
         const adminId = result.insertId;
-        console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)
+        console.warn(`👤 AUTH: User account [${username}] has been created (user)`)
         return res.json({ success: true, adminId })
     } catch (error) {
         console.error(error);
