@@ -37,6 +37,7 @@ router.post('/admin/login', async (req, res) => {
         conn.release();
 
         if (rows.length === 0) {
+            console.log(`👤 AUTH: invalid password attempt`)
             return res.status(401).json({ message: 'Invalid username or password or user is not admin' });
         }
 
