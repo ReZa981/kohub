@@ -81,7 +81,7 @@ function Search() {
         </div>
         <div className="resulttable">
           {isLoading ? (
-            <p> Now Loading... </p>
+            <p> now loading.. </p>
           ) : (
             searchResults.map((result) => (
               <ResultComponent

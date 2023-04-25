@@ -108,6 +108,43 @@
     margin-left: -7%;
 }
 
+.tablehead2 {
+    font-size: medium;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    background-color: #EBECED;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-color: #E5E5E5;
+    border-style: solid;
+    border-width: 0.5px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 6%;
+    width: 1100px;
+    height: 40px;
+  }
+  .tablehead2 p{
+    flex: 0 0 25%;
+  }
+  .tablehead2 p.coname{
+    margin-left: 2%;
+  }
+  .tablehead2 p.ratinglist{
+    margin-left: 5%;
+  }
+  .tablehead2 p.coedit{
+    margin-left: 7%;
+  }
+  .tablehead2 p.codelete{
+    margin-left: -11%;
+  }
+
 .listinfo {
   font-size: medium;
   display: flex;
@@ -122,7 +159,7 @@
 }
 
 .listinfo p{
-    width: 10%;
+    width: 20%;
     text-align: left;
 }
 
