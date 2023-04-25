@@ -23,7 +23,7 @@ function Service(){
         <DefaultLayout>
             <img
                 src={`${process.env.PUBLIC_URL}/wave2.png`}
-                alt="wave2"
+                alt="wave3"
                 className="wave3"
             />
             <div className="service">
@@ -50,9 +50,11 @@ function Service(){
                     <div className="onlykohub">
                         <h3>ONLY AT KOHUB</h3>
                         <div className="exclusive">
-                            <div className="coupon">
-                                <img src={`${process.env.PUBLIC_URL}/exclusiveduck.png`} alt="deal" className="exdeal" />
-                            </div>
+                            <Link to='/subscription'>
+                                <div className="coupon">
+                                    <img src={`${process.env.PUBLIC_URL}/exclusiveduck.png`} alt="deal" className="exdeal" />
+                                </div>
+                            </Link>
                             <div className="coupon">
                                 <img src={`${process.env.PUBLIC_URL}/duckvoucher.png`} alt="deal" className="exdeal" />
                             </div>

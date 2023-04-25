@@ -8,6 +8,7 @@ import Cowork from "./cowork";
 import Admin from "./admin";
 import Signup from "./signup";
 import Service from "./service";
+import Subscription from "./service/subscription";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/admin" element={<Admin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/service" element={<Service />} />
+        <Route path="/subscription" element={<Subscription />} />
       </Routes>
     </>
   );

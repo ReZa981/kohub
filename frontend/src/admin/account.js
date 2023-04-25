@@ -29,7 +29,7 @@ export const AccountList = (props) => {
     <div className="listinfo">
       <p className="username">{username}</p>
       <p className="userrole">{userrole}</p>
-      <p className="update">{email}</p>
+      <p className="useremail">{email}</p>
       <button type="submit" id="edit" onClick={handleEdit}>
         <img
           src={`${process.env.PUBLIC_URL}/modify.png`}
@@ -88,11 +88,11 @@ function Account() {
   return (
     <div className="accountmanagement">
       <div className="tablehead">
-        <p classname="username">username</p>
-        <p classname="userrole">userrole</p>
-        <p classname="update">email</p>
-        <p classname="edit">modify</p>
-        <p classname="delete">delete</p>
+        <p className="namehead">username</p>
+        <p className="rolehead">userrole</p>
+        <p className="emailhead">email</p>
+        <p className="edithead">modify</p>
+        <p className="deletehead">delete</p>
       </div>
       <div className="allaccount">
         {users.map((user) => (
