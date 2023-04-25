@@ -62,12 +62,8 @@ router.get('/cowork/search', async (req, res) => {
         const query = `
         SELECT * FROM coworking
         WHERE placeName LIKE '%${params.placeName || ''}%'
-        AND descr LIKE '%${params.descr || ''}%'
-        AND contact LIKE '%${params.contact || ''}%'
-        AND rating BETWEEN ${params.minRating || 0} AND ${params.maxRating || 5}
-        AND seat BETWEEN ${params.minSeat || 0} AND ${params.maxSeat || 100}
-        AND priceRange = '${params.priceRange || ''}'
-        AND locate = '${params.locate || ''}'
+        AND locate LIKE '%${params.location || ''}%'
+        AND rating BETWEEN ${params.rating || 0} AND ${params.rating || 5}
     `
         const [rows] = await connection.query(query)
         connection.release()
