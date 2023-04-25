@@ -58,7 +58,7 @@ router.post('/admin/login', async (req, res) => {
 
 // Create an admin account
 router.post('/admin/create', async (req, res) => {
-    const { username, password, email } = req.body
+    const { username, fullname, password, email } = req.body
 
     if (!username || !password || !email) {
         return res.status(400).json({ success: false, message: 'Arguments not complete' })
@@ -66,7 +66,7 @@ router.post('/admin/create', async (req, res) => {
 
     try {
         const conn = await pool.getConnection();
-        const [result] = await conn.execute('INSERT INTO `users` (userName, password, email, phoneNum, role) VALUES (?, ?, ?, "000000000", "admin")', [username, password, email])
+        const [result] = await conn.execute('INSERT INTO `users` (userName, fullName, password, email, phoneNum, role) VALUES (?, ?, ?, ?, "000000000", "admin")', [username, fullname, password, email])
         conn.release();
         const adminId = result.insertId;
         console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)

@@ -29,7 +29,7 @@ router.post('/cowork/create', async (req, res) => {
     `
         const [result] = await connection.query(query, [placename, descr, rating, seat, parking, freewifi, charging, food, bakery, meetingroom, quietzone, smokezone, locate, map, image])
         connection.release()
-            (`🏢 COWORK: Cowork ${rows.placeName} has been created`)
+        console.log(`🏢 COWORK: Cowork ${placename} has been created`)
         res.json({ success: true, placeId: result.insertId })
     } catch (err) {
         console.error(err)
