@@ -12,7 +12,7 @@ function Subscription(){
             />
             <div className="homeinfo">
                 <div className="introduceteam">
-                    <h1 className="exduck">What is EXCLUSIVE DUCK ?</h1>
+                    <h1 className="exduck">What is <span style={{color: '#F5BC18'}}>EXCLUSIVE DUCK</span> ?</h1>
                     <p className="exdesc">  Exclusive ducks are privileges that are enhanced for more 
                         convenient use.  more fast  and access to good deals more than
                         anyone else  Whether it's a noble duck member who will give more 
