@@ -92,16 +92,31 @@ router.get('/admin/users', async (req, res) => {
     }
 });
 
-// Updates user information
-router.put('/admin/users/:userId', async (req, res) => {
+router.get('/admin/users/:userId', async (req, res) => {
     const { userId } = req.params
-    const { username, fullname, email } = req.body
 
     try {
         const conn = await pool.getConnection();
-        const query = await conn.execute(`UPDATE users SET userName = ? fullName = ?, email = ? WHERE userId = ?`)
-    
-        const [result] = await conn.query(query, [username, fullname, email, userId])
+        const [rows] = await conn.execute('SELECT role, userId, userName, email FROM users WHERE userId = ?', [userId])
+        conn.release();
+        return res.status(201).json({ success: true, users: rows })
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ success: false })
+    }
+});
+
+// Updates user information
+router.post('/admin/users/:userId', async (req, res) => {
+    const { userId } = req.params
+    const { username, role, email } = req.body
+
+    console.log(req.params)
+    console.log(req.body)
+
+    try {
+        const conn = await pool.getConnection();
+        const [result] = await conn.query(`UPDATE users SET userName = ?, role = ?, email = ? WHERE userId = ?`, [username, role, email, userId])
         conn.release()
         
         if (result.affectedRows === 0) {
@@ -113,4 +128,20 @@ router.put('/admin/users/:userId', async (req, res) => {
         console.error(error)
     }
 })
+
+router.delete('/admin/users/:userId', async (req, res) => {
+    const { userId } = req.params
+
+    try {
+        const conn = await pool.getConnection()
+        await conn.execute('DELETE FROM users WHERE userId = ?', [userId])
+        conn.release()
+        console.warn(`👤 AUTH: User account [${userId}] has been deleted`)
+        return res.status(200).json({ success: true })
+    } catch (error) {
+        console.error(error)
+        return res.status(500).json({ success: false })
+    }
+})
+
 module.exports = router

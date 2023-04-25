@@ -1,25 +1,73 @@
+import { useState, useEffect } from "react";
 import DefaultLayout from "../layout/DefaultLayout";
 import './index.css'
 import { Link } from "react-router-dom";
 
-const hotdeal = (promotion) =>{
+export const HotDeals = (props) => {
+    const { placeName, placeId, promo, imgSrc } = props
     return (
-        <Link to="/" style={{ textDecoration: 'none' }}>
+        <Link to={`/cowork/${placeId}`} style={{ textDecoration: 'none' }}>
             <div className="hotplace"
-                    style={
-                        {backgroundImage: `url(${process.env.PUBLIC_URL}/miku.jpeg)`,
-                        backgroundSize: 'cover'}}
-                >
-                    <p className="promodesc">{promotion}</p>
+                style={
+                    {
+                        backgroundImage: `url(${imgSrc})`,
+                        backgroundSize: 'cover'
+                    }}
+            >
+                <p className="promodesc">{promo}</p>
             </div>
-            <p className="hotname">Co-working space's name</p>
+            <p className="hotname">{placeName}</p>
         </Link>
 
     );
 }
 
-function Service(){
-    return(
+export const RecommendCowork = (props) => {
+    const { placeName, placeId, imgSrc } = props
+    return (
+        <Link to={`/cowork/${placeId}`} style={{ textDecoration: 'none' }}>
+            <div className="autorec"
+                style={
+                    {
+                        backgroundImage: `url(${imgSrc})`,
+                        backgroundSize: 'cover'
+                    }}>
+                <p className="recname">{placeName}</p>
+            </div>
+        </Link>
+    )
+}
+
+function Service() {
+    const [recommendCowork, setRecommendCowork] = useState(null);
+
+    useEffect(() => {
+        console.log('fetching data...');
+        async function fetchData() {
+            try {
+                const response = await fetch(`http://localhost:4000/cowork/random/`);
+                const data = await response.json();
+
+                if (data.success) {
+                    setRecommendCowork(data.list);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchData();
+    }, []);
+
+    if (!recommendCowork) {
+        return (
+            <DefaultLayout>
+                <div>Loading...</div>
+            </DefaultLayout>
+        )
+    }
+
+    return (
         <DefaultLayout>
             <img
                 src={`${process.env.PUBLIC_URL}/wave2.png`}
@@ -29,22 +77,22 @@ function Service(){
             <div className="service">
                 <div className="recommend">
                     <h3>Recommended</h3>
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <div className="autorec"
-                            style={
-                            {backgroundImage: `url(${process.env.PUBLIC_URL}/miku.jpeg)`,
-                            backgroundSize: 'cover'}}>
-                            <p className="recname">Co-working space's name</p>
-                        </div>
-                    </Link>
+                    <RecommendCowork
+                        placeName={recommendCowork[0].placeName}
+                        placeId={recommendCowork[0].placeId}
+                        imgSrc={recommendCowork[0].image}
+                    />
                 </div>
                 <div className="deal">
                     <div className="hotdeal">
-                        <h3>HOT DEAL</h3>
+                        <h3>HOT DEALS</h3>
                         <div className="coworkdeal">
-                            {hotdeal("50 BAHT DISCOUNT")}
+                            {/* {hotdeal("50 BAHT DISCOUNT")}
                             {hotdeal("30 % OFF FOR DRINK")}
-                            {hotdeal("3 HOURS FREE 1 HOUR")}
+                            {hotdeal("3 HOURS FREE 1 HOUR")} */}
+                            <HotDeals promo="50 BAHT DISCOUNT" placeName="Too Fast To Sleep" placeId="13" imgSrc="https://m1r.ai/9/lr0vi.jpg"/>
+                            <HotDeals promo="30 % OFF FOR DRINK" placeName="WYH.Boutique and Design Hostel" placeId="16" imgSrc="https://m1r.ai/9/zmqja.jpg"/>
+                            <HotDeals promo="33 HOURS FREE 1 HOUR" placeName="Punspace" placeId="8" imgSrc="https://m1r.ai/9/1sb16.jpg" />
                         </div>
                     </div>
                     <div className="onlykohub">
@@ -63,6 +111,8 @@ function Service(){
                 </div>
             </div>
         </DefaultLayout>
-    )
+    );
 }
+
+
 export default Service;

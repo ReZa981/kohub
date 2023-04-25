@@ -3,6 +3,9 @@ import {useState} from 'react'
 import './index.css';
 import Account from './account'
 import Service from './service'
+import UserModal from '../modal/UserModal';
+import ServiceModal from '../modal/ServiceModal';
+
 
 const option = {
   Account: Symbol("account"),
@@ -12,6 +15,23 @@ const option = {
 function Admin() {
 
   const [adminoption, setOption] = useState(option.Account)
+  const [adminModal, setAdminModal] = useState(false);
+  const [serviceModal, setServiceModal] = useState(false)
+
+
+  const handleClose = () => {
+    setAdminModal(false);
+    setServiceModal(false);
+  };
+
+  const handleCreateAdmin = () => {
+    setAdminModal(true)
+  }
+
+  const handleCreateService = () => {
+    setServiceModal(true)
+  }
+
 
   return (
     <DefaultLayout>
@@ -31,17 +51,85 @@ function Admin() {
             SERVICE MANAGEMENT
           </a>
           {adminoption === option.Account ? (
-            <button type='submit' id='newacc'>+</button>
+            <button type='submit' id='newacc' onClick={handleCreateAdmin}>+</button>
           ):(
-            <button type='submit' id='newservice'>+</button>
+            <button type='submit' id='newservice' onClick={handleCreateService}>+</button>
           )
-          }
-        </div>
+        }
+      </div>
+      {adminModal && (
+        <UserModal onClose={handleClose}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Create admin</h2>
+            </div>
+            <div className="edituser-content">
+              <label>Username</label>
+              <input className="input" type="text" />
+              <label>Password</label>
+              <input className="input" type="text" />
+              <label>Email</label>
+              <input className="input" type="text" />
+              <br />
+              <div className="modal-button">
+                <button >CREATE ACCOUNT</button>
+              </div>
+            </div>
+          </div>
+        </UserModal>
+      )
+      }
+      {serviceModal && (
+        <ServiceModal onClose={handleClose}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h2>Create co-working</h2>
+            </div>
+            <div className="edituser-content">
+              <label>Place Name</label>
+              <input className="input" type="text" />
+              <label>Description</label>
+              <input className="input" type="text" />
+              <label>Rating</label>
+              <input className="input" type="text" />
+              <label>Seat</label>
+              <input className="input" type="text" />
+              <label>Parking</label>
+              <input className="input" type="text" />
+              <label>Free Wi-Fi</label>
+              <input className="input" type="text" />
+              <label>Charging</label>
+              <input className="input" type="text" />
+              <label>Food</label>
+              <input className="input" type="text" />
+              <label>Bakery</label>
+              <input className="input" type="text" />
+              <label>Meeting Room</label>
+              <input className="input" type="text" />
+              <label>Quiet Zone</label>
+              <input className="input" type="text" />
+              <label>Smoking Zone</label>
+              <input className="input" type="text" />
+              <label>Location</label>
+              <input className="input" type="text" />
+              <label>Map</label>
+              <input className="input" type="text" />
+              <label>Image</label>
+              <input className="input" type="text" />
+              <br />
+              <div className="modal-button">
+                <button >CREATE CO-WORKING</button>
+              </div>
+            </div>
+          </div>
+        </ServiceModal>
+      )
+      }
       {adminoption === option.Account ? (
         <Account />
       ):(
         <Service />
-      )
+        )
       }
     </DefaultLayout>
   );

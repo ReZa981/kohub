@@ -21,13 +21,13 @@ router.get('/cowork', (req, res) => {
 
 router.post('/cowork/create', async (req, res) => {
     try {
-        const { placeName, descr, contact, rating, seat, priceRange, locate, image } = req.body
+        const { placename, descr, rating, seat, parking, freewifi, charging, food, bakery, meetingroom, quietzone, smokezone, locate, map, image } = req.body
         const connection = await pool.getConnection()
         const query = `
-        INSERT INTO coworking (placeName, descr, contact, rating, seat, priceRange, locate, image)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO coworking (placeName, descr, rating, seat, parking, freewifi, charging, food, bakery, meetingroom, quietzone, smokezone, locate, map, image)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
     `
-        const [result] = await connection.query(query, [placeName, descr, contact, rating, seat, priceRange, locate, image])
+        const [result] = await connection.query(query, [placename, descr, rating, seat, parking, freewifi, charging, food, bakery, meetingroom, quietzone, smokezone, locate, map, image])
         connection.release()
             (`🏢 COWORK: Cowork ${rows.placeName} has been created`)
         res.json({ success: true, placeId: result.insertId })
@@ -37,19 +37,19 @@ router.post('/cowork/create', async (req, res) => {
     }
 })
 
-router.put('/cowork/update/:placeId', async (req, res) => {
+router.post('/cowork/update/:placeId', async (req, res) => {
     try {
         const placeId = req.params.placeId
-        const { placeName, descr, contact, rating, seat, priceRange, locate, image } = req.body
+        const { placename, rating, seat } = req.body
         const connection = await pool.getConnection()
         const query = `
-        UPDATE coworking
-        SET placeName = ?, descr = ?, contact = ?, rating = ?, seat = ?, priceRange = ?, locate = ?, image = ?
-        WHERE placeId = ?
-    `
-        const [result] = await connection.query(query, [placeName, descr, contact, rating, seat, priceRange, locate, image, placeId])
+            UPDATE coworking
+            SET placeName = ?, rating = ?, seat = ?
+            WHERE placeId = ?
+        `
+        const [result] = await connection.query(query, [placename, rating, seat, placeId])
         connection.release()
-            (`🏢 COWORK: Cowork ${rows.placeName} has been updated`)
+        console.log(`🏢 COWORK: Cowork ${placename} has been updated`)
         res.json({ success: true, rowsAffected: result.affectedRows })
     } catch (err) {
         console.error(err)
@@ -66,7 +66,6 @@ router.get("/cowork/get/:placeId", async (req, res) => {
         SELECT * FROM coworking WHERE placeId = ?`;
         const [result] = await connection.query(query, [placeId]);
         connection.release();
-        (`🏢 COWORK: Cowork ${rows.placeName} has been responded`)
         res.json({ success: true, data: result });
     } catch (err) {
         console.error(err);
@@ -86,7 +85,6 @@ router.get('/cowork/search', async (req, res) => {
     `
         const [rows] = await connection.query(query)
         connection.release()
-        console.warn(`🔎 SEARCH: Search Query ${req.query} has been hit`)
         res.json({ success: true, list: rows })
     } catch (err) {
         console.error(err)
@@ -113,8 +111,22 @@ router.get('/cowork/random', async (req, res) => {
         const query = 'SELECT * FROM coworking WHERE rating = 5 ORDER BY RAND() LIMIT 1'
         const [rows] = await connection.query(query)
         connection.release()
-        console.warn(`🎲 RANDOM: Cowork ${rows.placeName} has been responded`)
         res.json({ success: true, list: rows })
+    } catch (err) {
+        console.error(err)
+        return res.status(500).json({ success: false })
+    }
+})
+
+router.delete('/cowork/:placeId', async (req, res) => {
+    const placeId = req.params.placeId
+
+    try {
+        const connection = await pool.getConnection()
+        const query = 'DELETE FROM coworking WHERE placeId = ?'
+        const [result] = await connection.query(query, [placeId])
+        connection.release()
+        res.json({ success: true, rowsAffected: result.affectedRows })
     } catch (err) {
         console.error(err)
         return res.status(500).json({ success: false })
