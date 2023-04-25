@@ -62,7 +62,7 @@ function Service() {
     if (!recommendCowork) {
         return (
             <DefaultLayout>
-                <div>Loading...</div>
+                <div>now loading..</div>
             </DefaultLayout>
         )
     }
