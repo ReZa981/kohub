@@ -88,17 +88,17 @@ CREATE TABLE IF NOT EXISTS `coworking` (
 
 INSERT INTO `users` (`userName`, `fullName`, `email`,`phonenum`, `password`, `role`) 
 VALUES 
-('PorameeA', 'Poramee Apireadeewajeeset', 'PorameeA@example.com', '0990810000' ,'2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'admin'),
-('PawitaP', 'Pawita Pongpaew', 'PawitaP@example.com', '0990811233','2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O','admin'),
-('KanyanatS', 'Kanyanat Sompong', 'KanyanatS@example.com', '0990813233','2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O','admin'),
-('ChanayachaS', 'Chanayacha Suriyasoonthorn', 'ChanayachaS@example.com','0990814444', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'admin'),
-('PattanunW', 'Pattanun Worakitsitthisatorn', 'PattanunW@example.com','0990810555', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'admin'),
-('JidapaK', 'Jidapa Kraisangka', 'JidapaK@example.com','0990813212', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'admin'),
-('sarahjones', 'Sarah Jones', 'sarahjones@example.com','0990813231', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'user'),
-('markbrown', 'Mark Brown', 'markbrown@example.com','0990817806','2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'user'),
-('ellencarter', 'Ellen Carter', 'ellencarter@example.com','0990813666', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'user'),
-('peterparker', 'Peter Parker', 'peterparker@example.com','0990812222', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'user'),
-('johnsmith', 'John Smith', 'johnsmith@example.com','0990819999', '2b$10$NHvwf4LOKbnn4b5JOriHg.iMsYBLB01vvsRAhGo33dncGmCFcHd5O', 'user');
+('PorameeA', 'Poramee Apireadeewajeeset', 'PorameeA@example.com', '0990810000' ,'1234', 'admin'),
+('PawitaP', 'Pawita Pongpaew', 'PawitaP@example.com', '0990811233','1234','admin'),
+('KanyanatS', 'Kanyanat Sompong', 'KanyanatS@example.com', '0990813233','1234','admin'),
+('ChanayachaS', 'Chanayacha Suriyasoonthorn', 'ChanayachaS@example.com','0990814444', '1234', 'admin'),
+('PattanunW', 'Pattanun Worakitsitthisatorn', 'PattanunW@example.com','0990810555', '1234', 'admin'),
+('JidapaK', 'Jidapa Kraisangka', 'JidapaK@example.com','0990813212', '1234', 'admin'),
+('sarahjones', 'Sarah Jones', 'sarahjones@example.com','0990813231', '1234', 'user'),
+('markbrown', 'Mark Brown', 'markbrown@example.com','0990817806','1234', 'user'),
+('ellencarter', 'Ellen Carter', 'ellencarter@example.com','0990813666', '1234', 'user'),
+('peterparker', 'Peter Parker', 'peterparker@example.com','0990812222', '1234', 'user'),
+('johnsmith', 'John Smith', 'johnsmith@example.com','0990819999', '1234', 'user');
 
 INSERT INTO `coworking` (`placeName`, `descr`, `rating`, `seat`, `parking`, `freewifi`, `charging`, `food`, `bakery`, `meetingroom`, `quietzone`, `smokezone`, `locate`, `image`)
 VALUES 
