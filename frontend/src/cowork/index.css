@@ -90,7 +90,7 @@
     height: 90%;
 }
 
-.coworklocation img{
+.coworklocation iframe {
     border-radius: 20px;
     width: 100%;
     height: 100%;

@@ -88,6 +88,7 @@ function Search() {
                 name={result.placeName}
                 location={result.locate}
                 rating={result.rating}
+                placeId={result.placeId}
               />
             ))
           )}

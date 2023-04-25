@@ -31,11 +31,11 @@ export const ResultComponent = (props) => {
         {filledDucks}
         {emptyDucks}
       </p>
-      <Link to="/coworkingspace">
-        <button type="submit" id="more">
+        <button type="submit" onClick={() => {
+          window.location.href = `/cowork/${props.placeId}`;
+        }} id="more">
           More Detail
         </button>
-      </Link>
     </div>
   );
 };

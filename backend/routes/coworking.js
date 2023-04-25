@@ -55,6 +55,22 @@ router.put('/cowork/update/:placeId', async (req, res) => {
     }
 })
 
+router.get("/cowork/get/:placeId", async (req, res) => {
+  try {
+    const placeId = req.params.placeId;
+
+    const connection = await pool.getConnection();
+    const query = `
+        SELECT * FROM coworking WHERE placeId = ?`;
+    const [result] = await connection.query(query, [placeId]);
+    connection.release();
+    res.json({ success: true, data: result });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false });
+  }
+});
+
 router.get('/cowork/search', async (req, res) => {
     try {
         const params = req.query

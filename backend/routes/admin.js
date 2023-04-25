@@ -58,16 +58,16 @@ router.post('/admin/login', async (req, res) => {
 
 // Create an admin account
 router.post('/admin/create', async (req, res) => {
-    const { username, password, fullname, email } = req.body
+    const { username, password, email } = req.body
 
-    if (!username || !password || !fullname || !email) {
+    if (!username || !password || !email) {
         return res.status(400).json({ success: false, message: 'Arguments not complete' })
     }
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const conn = await pool.getConnection();
-        const [result] = await conn.execute('INSERT INTO `users` (userName, password, fullName, email, role) VALUES (?, ?, ?, ?, "admin")', [username, hashedPassword, fullname, email])
+        const [result] = await conn.execute('INSERT INTO `users` (userName, password, email, role) VALUES (?, ?, ?, "admin")', [username, hashedPassword, email])
         conn.release();
         const adminId = result.insertId;
         console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)
@@ -82,7 +82,7 @@ router.post('/admin/create', async (req, res) => {
 router.get('/admin/users', async (req, res) => {
     try {
         const conn = await pool.getConnection();
-        const [rows, fields] = await conn.execute('SELECT userId, userName, email FROM users WHERE role = "user"')
+        const [rows] = await conn.execute('SELECT role, userId, userName, email FROM users')
         conn.release();
         return res.json({ success: true, users: rows })
     } catch (error) {

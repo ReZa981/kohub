@@ -16,8 +16,9 @@ function Login() {
   const [password, setPassword] = useState('')
   const [userRole, setUserRole] = useState(role.User)
   const [error, setError] = useState(null)
+    
+  const apiLink = `http://localhost:4000/${userRole.User ? 'user' : 'admin'}/login`;
 
-  const apiLink = 'http://localhost:4000/admin/login'
 
   const handleLogin = async () => {
     console.log('kub')

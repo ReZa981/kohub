@@ -1,13 +1,16 @@
 import DefaultLayout from "../layout/DefaultLayout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./index.css";
 import Modal from "../modal/Modal";
 
-export const AccountList = () => {
+export const AccountList = (props) => {
+
+  const { username, userrole, email } = props
+
   const [modal, setModal] = useState(false);
   const [selectedOperation, setSelectedOperation] = useState("");
 
-  const handleEdit = () => {
+  const handleEdit = (props) => {
     console.log("edit");
     setSelectedOperation("Edit");
     setModal(true);
@@ -24,9 +27,9 @@ export const AccountList = () => {
   };
   return (
     <div className="listinfo">
-      <p className="username">username</p>
-      <p className="userrole">userrole</p>
-      <p className="update">update</p>
+      <p className="username">{username}</p>
+      <p className="userrole">{userrole}</p>
+      <p className="update">{email}</p>
       <button type="submit" id="edit" onClick={handleEdit}>
         <img
           src={`${process.env.PUBLIC_URL}/modify.png`}
@@ -49,7 +52,7 @@ export const AccountList = () => {
           <div className="modal-content">
             <div className="edituser-content">
               <label>Username</label>
-              <input className="input" type="text" placeholder="username" />
+              <input className="input" type="text" placeholder="{username}" />
               <label>E-mail</label>
               <input className="input" type="text" placeholder="userrole" />
               <label>Role</label>
@@ -66,17 +69,35 @@ export const AccountList = () => {
   );
 };
 function Account() {
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/admin/users");
+      const data = await response.json();
+      setUsers(data.users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   return (
     <div className="accountmanagement">
       <div className="tablehead">
         <p classname="username">username</p>
         <p classname="userrole">userrole</p>
-        <p classname="update">last update</p>
+        <p classname="update">email</p>
         <p classname="edit">modify</p>
         <p classname="delete">delete</p>
       </div>
       <div className="allaccount">
-        <AccountList />
+        {users.map((user) => (
+          <AccountList key={user.userId} username={user.userName} userrole={user.role} email={user.email} />
+        ))}
       </div>
     </div>
   );
