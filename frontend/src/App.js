@@ -7,6 +7,7 @@ import Search from "./search";
 import Cowork from "./cowork";
 import Admin from "./admin";
 import Signup from "./signup";
+import Service from "./service";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/cowork/:placeId" element={<Cowork />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/service" element={<Service />} />
       </Routes>
     </>
   );

@@ -49,7 +49,7 @@ const Navbar = () => {
       <NavbarItem href="/">HOME</NavbarItem>
       <NavbarItem href="/about">ABOUT US</NavbarItem>
       <NavbarItem href="/search">SEARCH</NavbarItem>
-      <NavbarItem href="/">SERVICE</NavbarItem>
+      <NavbarItem href="/service">SERVICE</NavbarItem>
       {!localStorage.getItem("token") ? (
         <NavbarItem href="/login">
           <button className="LoginButton">LOG IN</button>
