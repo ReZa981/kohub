@@ -42,9 +42,8 @@ router.post('/admin/login', async (req, res) => {
         }
 
         const user = rows[0];
-        const isMatch = await bcrypt.compare(password, user.password);
 
-        if (isMatch) {
+        if (password === user.password) {
             const token = jwt.sign({ username: user.ad_username }, process.env.JWT_SECRET_KEY);
             console.warn(`👤 AUTH: [${user.userName}] has logged in (${user.role})`)
             return res.json({ token });
@@ -66,9 +65,8 @@ router.post('/admin/create', async (req, res) => {
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
         const conn = await pool.getConnection();
-        const [result] = await conn.execute('INSERT INTO `users` (userName, password, email, role) VALUES (?, ?, ?, "admin")', [username, hashedPassword, email])
+        const [result] = await conn.execute('INSERT INTO `users` (userName, password, email, phoneNum, role) VALUES (?, ?, ?, "000000000", "admin")', [username, password, email])
         conn.release();
         const adminId = result.insertId;
         console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)

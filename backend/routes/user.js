@@ -39,10 +39,9 @@ router.post('/user/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid username or password' });
         }
 
-        const user = rows[0];
-        const isMatch = await bcrypt.compare(password, user.password);
+        const user = rows[0]
 
-        if (isMatch) {
+        if (password === user.password) {
             const token = jwt.sign({ username: user.ad_username }, process.env.JWT_SECRET_KEY);
             console.warn(`👤 AUTH: [${user.userName}] has logged in (${user.role})`)
             return res.json({ token });
@@ -59,14 +58,15 @@ router.post('/user/login', async (req, res) => {
 router.post('/user/create', async (req, res) => {
     const { username, password, fullname, email } = req.body
 
+    console.log(req.body)
+
     if (!username || !password || !fullname || !email) {
         return res.status(400).json({ success: false, message: 'Arguments not complete' })
     }
 
     try {
-        const hashedPassword = await bcrypt.hash(password, 10);
         const conn = await pool.getConnection();
-        const [result] = await conn.execute('INSERT INTO `users` (userName, password, fullName, email) VALUES (?, ?, ?, ?)', [username, hashedPassword, fullname, email])
+        const [result] = await conn.execute('INSERT INTO `users` (userName, fullName, password, email, phoneNum, role) VALUES (?, ?, ?, ?, "00000000" , "user")', [username, fullname, password, email])
         conn.release();
         const adminId = result.insertId;
         console.warn(`👤 AUTH: User account [${username}] has been created (admin)`)
