@@ -25,7 +25,6 @@ function Cowork(props) {
         fetchData();
     }, [placeId]);
 
-    console.log(coworkData);
     return (
         <DefaultLayout>
             {coworkData ? (
