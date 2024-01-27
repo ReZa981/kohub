@@ -1,5 +1,5 @@
 # ITCS212 Web Programming
-
+This project is not responsive website.
 ## To install the backend dependencies
 
 ```
